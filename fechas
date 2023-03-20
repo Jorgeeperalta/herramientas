@@ -1,0 +1,18 @@
+  // html
+  <template v-slot:[`item.fecha`]="{ item }"
+              >
+              <div v-if="item.fecha != null">
+              {{ parseaFecha(item.fecha) }} 
+              </div>
+              <br />
+   </template>
+   // data
+  { text: "Fecha", value: "fecha" },
+  // methods
+   parseaFecha(fec) {
+      let arrayFehahechos = fec.split(["T"]);
+      let auxFechahec = arrayFehahechos[0];
+      auxFechahec = auxFechahec.split(["-"]);
+      return (auxFechahec =
+        auxFechahec[2] + "-" + auxFechahec[1] + "-" + auxFechahec[0]);
+    },
