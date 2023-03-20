@@ -1,0 +1,14 @@
+ verificaDni() {
+      for (var i = 0; i < this.inmuebles.length; i++) {
+        if (this.inmuebles[i].dni == this.editedItem.dni) {
+          this.dialog = false;
+          this.$swal({
+            title: "El Dni por registrar ya existe en la base de datos!!",
+            text: "",
+            icon: "warning",
+          });
+          this.buscador = this.editedItem.dni;
+          break;
+        }
+      }
+    },
