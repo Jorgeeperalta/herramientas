@@ -1,0 +1,53 @@
+  //html
+  <l-map
+                  v-if="showMap"
+                  :zoom="zoom"
+                  :center="center"
+                  :options="mapOptions"
+                  style="height: 100%"
+                  @update:center="centerUpdate"
+                  @update:zoom="zoomUpdate"
+                  @click="addMarker"
+                >
+                  <l-tile-layer :url="url" :attribution="attribution" />
+
+                  <l-marker
+                    v-for="marker in marcadores"
+                    :key="marker.id"
+                    :lat-lng="marker.pos"
+                  >
+                    <l-popup>
+                      <div @click="innerClick">
+                        {{ marker.desc }}
+                        <p v-show="showParagraph"></p>
+                      </div>
+                    </l-popup>
+                  </l-marker>
+                </l-map>
+                
+  // data
+  
+  import { latLng } from "leaflet";
+
+import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
+
+export default {
+  components: {
+    LMap,
+    LTileLayer,
+    LMarker,
+    LPopup,
+  },
+  
+  // methods
+ addMarker(event) {
+      this.marcadores = [];
+      //  var t = this;
+      //  console.log("Que onda=?");
+      this.marcadores.push({ pos: event.latlng, desc: "" });
+
+      // console.log(this.marcadores);
+      //  console.log(this.marcadores[0].pos.lng);
+      this.datos.Latitud = this.marcadores[0].pos.lat;
+      this.datos.Longitud = this.marcadores[0].pos.lng;
+    },
